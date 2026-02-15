@@ -117,7 +117,7 @@ def run_pipeline(email):
     for idx, uuid in enumerate(uuids, 1):
         try:
             print(f"  Analyzing UUID {idx}/{len(uuids)}...")
-            analysis, sentiment = analyze_with_ai(uuid)
+            analysis, sentiment = "pessimistic"
             
             result = {
                 "original": uuid,
