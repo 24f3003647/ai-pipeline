@@ -1,0 +1,24 @@
+# Environment variables - NEVER commit this!
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+env/
+
+# Results file
+pipeline_results.json
+
+# Railway
+.railway/
+```
+
+### **E. Create `Procfile` (tells Railway how to run your app)**
+
+Create a file named `Procfile` (no extension):
+```
+web: uvicorn pipeline:app --host 0.0.0.0 --port $PORT
