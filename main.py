@@ -12,7 +12,7 @@ app = FastAPI()
 
 # === COMPONENT FUNCTIONS ===
 
-def fetch_uuids(count=3):
+def fetch_uuids(count=1):
     """Fetch UUIDs from HTTPBin"""
     uuids = []
     for i in range(count):
@@ -184,4 +184,5 @@ if __name__ == "__main__":
     import os
     port = int(os.getenv("PORT", 8000))
     print(f"Starting server on port {port}")
+
     uvicorn.run(app, host="0.0.0.0", port=port)
