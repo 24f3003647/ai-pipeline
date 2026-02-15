@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import httpx
 from openai import OpenAI
@@ -9,10 +10,17 @@ from dotenv import load_dotenv
 
 load_dotenv()
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods including OPTIONS
+    allow_headers=["*"],  # Allows all headers
+)
 
 # === COMPONENT FUNCTIONS ===
 
-def fetch_uuids(count=1):
+def fetch_uuids(count=3):
     """Fetch UUIDs from HTTPBin"""
     uuids = []
     for i in range(count):
@@ -184,5 +192,4 @@ if __name__ == "__main__":
     import os
     port = int(os.getenv("PORT", 8000))
     print(f"Starting server on port {port}")
-
     uvicorn.run(app, host="0.0.0.0", port=port)
