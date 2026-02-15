@@ -117,7 +117,7 @@ def run_pipeline(email):
     for idx, uuid in enumerate(uuids, 1):
         try:
             print(f"  Analyzing UUID {idx}/{len(uuids)}...")
-            analysis, sentiment = "pessimistic"
+            analysis, sentiment = "Temperature analytics involves processing time-series data from sensors or meteorological sources using AI, machine learning, and statistical methods to identify patterns, monitor environments, and enable predictive modeling", "pessimistic"
             
             result = {
                 "original": uuid,
