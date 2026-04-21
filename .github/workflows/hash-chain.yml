@@ -1,0 +1,29 @@
+name: Hash Chain Verification
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Compute verify hash be5f4c4a
+        id: compute_hash
+        run: |
+          # Combine secret + string and hash
+          VALUE="${{ secrets.MY_SECRET }}github-verified"
+          HASH=$(echo -n "$VALUE" | sha256sum | awk '{print $1}' | cut -c1-10)
+
+          echo "verify_hash=$HASH" >> $GITHUB_OUTPUT
+          echo "$HASH" > verify.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: verify-hash-be5f4c4a
+          path: verify.txt
